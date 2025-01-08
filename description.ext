@@ -1,0 +1,22 @@
+class CfgFunctions
+{
+    class STATE 
+    {
+        class GLOBAL
+        {
+            file = "functions\state";
+            class updateState {};
+            class getState {};
+            class getAllState {};
+        };
+    };
+
+    class DPCS
+    {
+        class Debug
+        {
+            file = "functions\debug";
+            class dumpState {};
+        }
+    };
+};
