@@ -9,6 +9,11 @@ if (isNil "PLATOON_ASSETS") then {
     publicVariable "PLATOON_ASSETS";
 };
 
+// PLATOON_GROUPS = [
+//     group player   // First squad
+// ];
+
+// publicVariable "PLATOON_GROUPS";
 [] spawn {
     [] execVM "scripts\state\medical.sqf";
     [] execVM "scripts\state\platoon_assets.sqf";
