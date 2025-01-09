@@ -35,10 +35,24 @@ class CfgFunctions
     class DPC
     {
         tag = "DPC";
+
+        class Config {
+            file = "functions\config";
+            class initMissionConfig {
+                postInit = 1;
+            };
+        };
+        
         class Medical
         {
             file = "functions\medical";
             class handleUnitDeath {};
+            class addLoadBodyAction {};
+            class addUnloadBodyAction {};
+            class canLoadBody {};
+            class initMedicalSystems {
+                postInit = 1;
+            };
         };
 
         class Debug
