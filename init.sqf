@@ -27,3 +27,15 @@ player addAction [
     "true", // Condition
     5 // Radius
 ];
+
+private _allPlatoonUnits = units group player;
+
+{
+    if (!isPlayer _x) then {
+        private _handlerId = _x addEventHandler ["Killed", {
+            params ["_unit"];
+            [_unit] call DPC_fnc_handleUnitDeath;
+        }];
+        _x setVariable ["DPC_deathHandler", _handlerId];
+    };
+} forEach _allPlatoonUnits;
