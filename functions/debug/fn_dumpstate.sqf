@@ -7,7 +7,7 @@
     Returns: None
     
     Example:
-    [] call DPCS_fnc_dumpState;
+    [] call DPC_fnc_dumpState;
 */
 
 if(isNil "MISSION_STATE") then {

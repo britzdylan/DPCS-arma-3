@@ -7,6 +7,6 @@
     Returns: hashMap
     
     Example:
-    [] call DPCS_fn_getAllState;
+    [] call DPC_fn_getAllState;
 */
 MISSION_STATE;

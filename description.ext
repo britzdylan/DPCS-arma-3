@@ -15,19 +15,22 @@ class CfgConstants
 
 class CfgFunctions
 {
-    class STATE 
+    class DPC
     {
-        class GLOBAL
+        class State 
         {
             file = "functions\state";
             class updateState {};
             class getState {};
             class getAllState {};
         };
-    };
 
-    class DPCS
-    {
+        class Medical
+        {
+            file = "functions\medical";
+            class handleUnitDeath {};
+        };
+
         class Debug
         {
             file = "functions\debug";

@@ -7,7 +7,7 @@
     Returns: hashMap
     
     Example:
-    [] call DPCS_fn_getState ["Medical", "REVIVE_TIME_LIMIT"];
+    [] call DPC_fn_getState ["Medical", "REVIVE_TIME_LIMIT"];
 */
 
 private ["_category", "_key"];

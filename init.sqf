@@ -3,7 +3,7 @@
 player addAction [
     "Dump Mission State", 
     {
-        [] call DPCS_fnc_dumpState;
+        [] call DPC_fnc_dumpState;
     }, 
     nil, 
     1.5, 

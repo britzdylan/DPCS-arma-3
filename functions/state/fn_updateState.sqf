@@ -7,7 +7,7 @@
     Returns: None
     
     Example:
-    [] call DPCS_fn_updateState ["Medical", "REVIVE_TIME_LIMIT", 600];
+    [] call DPC_fn_updateState ["Medical", "REVIVE_TIME_LIMIT", 600];
 */
 
 
