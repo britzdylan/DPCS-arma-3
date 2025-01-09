@@ -1,3 +1,18 @@
+class CfgConstants 
+{
+    // General Mission Settings
+    MISSION_NAME = "Dynamic Platoon Command";
+    MISSION_AUTHOR = "Dylan Britz";
+    
+    // Medical System Constants
+    class Medical {
+        REVIVE_TIME_LIMIT = 300;     // 5 minutes in seconds
+        MAX_REVIVE_DISTANCE = 5;     // meters
+        SKILL_PENALTY = 0.9;         // 10% skill reduction after revival
+        MAX_CASEVAC_DISTANCE = 15;   // meters from medical building
+    };
+};
+
 class CfgFunctions
 {
     class STATE 
