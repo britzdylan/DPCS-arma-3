@@ -11,6 +11,23 @@ class CfgConstants
         SKILL_PENALTY = 0.9;         // 10% skill reduction after revival
         MAX_CASEVAC_DISTANCE = 15;   // meters from medical building
     };
+
+    // Resupply unit constants
+    class Units {
+        TRACKED_VEHICLE_POOL = 1;
+        MRAP_VEHICLE_POOL = 15;
+        HMG_VEHICLE_POOL = 10;
+        GMG_VEHICLE_POOL = 7;
+        QUAD_POOL = 20;
+        AMMO_TRUCK_POOL = 25;
+        MED_TRUCK_POOL = 5;
+        REPAIR_TRUCK_POOL = 5;
+        FUEL_TRUCK_POOL = 12;
+        HMG_TURRET_POOL = 55;
+        GMG_TURRET_POOL = 25;
+        AT_TURRET_POOL = 15;
+        MORTAR_TURRET_POOL = 15;
+    }
 };
 
 class CfgFunctions
