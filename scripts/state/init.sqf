@@ -1,7 +1,3 @@
-[] spawn {
-    [] execVM "scripts\state\platoonAssets.sqf";
-};
-
 // Initialize Global Mission State
 if (isNil "MISSION_STATE") then {
     MISSION_STATE = createHashMap;
@@ -9,7 +5,8 @@ if (isNil "MISSION_STATE") then {
 };
 
 [] spawn {
-    [] execVM "scripts\state\platoonAssets.sqf";
+    [] execVM "scripts\state\medical.sqf";
+    [] execVM "scripts\state\platoon.sqf";
 };
     
 
