@@ -4,19 +4,19 @@ PLATOON_ASSETS set ["transport_vehicles", createHashMap];
 PLATOON_ASSETS set ["utility_vehicles", createHashMap];
 PLATOON_ASSETS set ["turrets", createHashMap];
 
-private _trackedVehiclePool = getNumber(missionConfigFile >> "CfgConstants" >> "Units" >> "TRACKED_VEHICLE_POOL");
-private _mrapVehiclePool = getNumber(missionConfigFile >> "CfgConstants" >> "Units" >> "MRAP_VEHICLE_POOL");
-private _hmgVehiclePool =  getNumber(missionConfigFile >> "CfgConstants" >> "Units" >> "HMG_VEHICLE_POOL");
-private _gmgVehiclePool = getNumber(missionConfigFile >> "CfgConstants" >> "Units" >> "GMG_VEHICLE_POOL");
-private _quadPool = getNumber(missionConfigFile >> "CfgConstants" >> "Units" >> "QUAD_POOL");
-private _ammoTruckPool = getNumber(missionConfigFile >> "CfgConstants" >> "Units" >> "AMMO_TRUCK_POOL"); 
-private _medTruckPool = getNumber(missionConfigFile >> "CfgConstants" >> "Units" >> "MED_TRUCK_POOL"); 
-private _repairTruckPool = getNumber(missionConfigFile >> "CfgConstants" >> "Units" >> "REPAIR_TRUCK_POOL"); 
-private _fuelTruckPool = getNumber(missionConfigFile >> "CfgConstants" >> "Units" >> "FUEL_TRUCK_POOL"); 
-private _hmgTurretPool = getNumber(missionConfigFile >> "CfgConstants" >> "Units" >> "HMG_TURRET_POOL"); 
-private _gmgTurretPool = getNumber(missionConfigFile >> "CfgConstants" >> "Units" >> "GMG_TURRET_POOL"); 
-private _atTurretPool = getNumber(missionConfigFile >> "CfgConstants" >> "Units" >> "AT_TURRET_POOL"); 
-private _mortarTurretPool = getNumber(missionConfigFile >> "CfgConstants" >> "Units" >> "MORTAR_TURRET_POOL"); 
+private _trackedVehiclePool = getNumber(missionConfigFile >> "CfgConstants" >> "Supply" >> "TRACKED_VEHICLE_POOL");
+private _mrapVehiclePool = getNumber(missionConfigFile >> "CfgConstants" >> "Supply" >> "MRAP_VEHICLE_POOL");
+private _hmgVehiclePool =  getNumber(missionConfigFile >> "CfgConstants" >> "Supply" >> "HMG_VEHICLE_POOL");
+private _gmgVehiclePool = getNumber(missionConfigFile >> "CfgConstants" >> "Supply" >> "GMG_VEHICLE_POOL");
+private _quadPool = getNumber(missionConfigFile >> "CfgConstants" >> "Supply" >> "QUAD_POOL");
+private _ammoTruckPool = getNumber(missionConfigFile >> "CfgConstants" >> "Supply" >> "AMMO_TRUCK_POOL"); 
+private _medTruckPool = getNumber(missionConfigFile >> "CfgConstants" >> "Supply" >> "MED_TRUCK_POOL"); 
+private _repairTruckPool = getNumber(missionConfigFile >> "CfgConstants" >> "Supply" >> "REPAIR_TRUCK_POOL"); 
+private _fuelTruckPool = getNumber(missionConfigFile >> "CfgConstants" >> "Supply" >> "FUEL_TRUCK_POOL"); 
+private _hmgTurretPool = getNumber(missionConfigFile >> "CfgConstants" >> "Supply" >> "HMG_TURRET_POOL"); 
+private _gmgTurretPool = getNumber(missionConfigFile >> "CfgConstants" >> "Supply" >> "GMG_TURRET_POOL"); 
+private _atTurretPool = getNumber(missionConfigFile >> "CfgConstants" >> "Supply" >> "AT_TURRET_POOL"); 
+private _mortarTurretPool = getNumber(missionConfigFile >> "CfgConstants" >> "Supply" >> "MORTAR_TURRET_POOL"); 
 
 /*
 #######################

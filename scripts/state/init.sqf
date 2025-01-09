@@ -11,5 +11,5 @@ if (isNil "PLATOON_ASSETS") then {
 
 [] spawn {
     [] execVM "scripts\state\medical.sqf";
-    [] execVM "scripts\state\platoon.sqf";
+    [] execVM "scripts\state\platoon_assets.sqf";
 };
