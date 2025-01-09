@@ -17,14 +17,7 @@ class CfgFunctions
 {
     class DPC
     {
-        class State 
-        {
-            file = "functions\state";
-            class updateState {};
-            class getState {};
-            class getAllState {};
-        };
-
+        tag = "DPC";
         class Medical
         {
             file = "functions\medical";
