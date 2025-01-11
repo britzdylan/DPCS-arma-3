@@ -10,7 +10,7 @@
     Returns: String - The formatted state dump text
     
     Example:
-    [MISSION_STATE] call DPC_fnc_dumpState;
+    [DPC_MISSION_STATE] call DPC_fnc_dumpState;
 */
 
 params [["_state", createHashMap, [createHashMap]]];
@@ -26,7 +26,7 @@ if (count _state == 0) then {
     _text = "=== MISSION STATE DUMP ===\n";
     _text = _text + format["Timestamp: %1\n", [dayTime, "HH:MM:SS"] call BIS_fnc_timeToString];
     _text = _text + format["Number of Keys: %1\n\n", count _stateKeys];
-
+    
     {
         private _key = _x;
         private _value = _state get _key;

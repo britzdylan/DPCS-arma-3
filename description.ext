@@ -2,19 +2,19 @@ class CfgConstants
 {
     // General Mission Settings
     MISSION_NAME = "Dynamic Platoon Command";
-    MISSION_AUTHOR = "Dylan Brit";
+    MISSION_AUTHOR = "Dylan Britz";
     
     // Medical System Constants
-    class Medical {
-        REVIVE_TIME_LIMIT = 60;     // 5 minutes in seconds
-        MAX_REVIVE_DISTANCE = 5;     // meters
+    class MedicalSys {
+        REVIVE_TIME_LIMIT = 600;     // 10 minutes in seconds
+        MAX_REVIVE_DISTANCE = 10;     // meters from medical building
         SKILL_PENALTY = 0.1;         // 10% skill reduction after revival
-        MAX_CASEVAC_DISTANCE = 15;   // meters from medical building
+        MAX_CASEVAC_DISTANCE = 10;   // meters from vehicle
         MAX_MEDICAL_FACILITY_CAPACITY = 2; // Number of patients that can be treated at once
     };
 
     // Resupply unit constants
-    class Supply {
+    class SupplyPool {
         TRACKED_VEHICLE_POOL = 1;
         MRAP_VEHICLE_POOL = 15;
         HMG_VEHICLE_POOL = 10;
@@ -28,9 +28,8 @@ class CfgConstants
         GMG_TURRET_POOL = 25;
         AT_TURRET_POOL = 15;
         MORTAR_TURRET_POOL = 15;
-    }
+    };
 };
-
 class CfgFunctions
 {
     class DPC
@@ -61,6 +60,9 @@ class CfgFunctions
         {
             file = "functions\debug";
             class dumpState {};
+            class initDebug {
+                postInit = 1;
+            };
         }
     };
 };
