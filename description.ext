@@ -2,7 +2,7 @@ class CfgConstants
 {
     // General Mission Settings
     MISSION_NAME = "Dynamic Platoon Command";
-    MISSION_AUTHOR = "Dylan Britz";
+    MISSION_AUTHOR = "Dylan Brit";
     
     // Medical System Constants
     class Medical {
