@@ -58,7 +58,7 @@ if(!isNil "DPC_MISSION_STATE") then {
             
             waitUntil {
                 sleep 1;
-                if (!isNil "dpc_traumaStart" && 
+                if (!isNil "_traumaStart" &&
                     (time - _traumaStart >= _reviveTimeLimit)) then {
                     private _medicalState = DPC_MISSION_STATE get "SYS_MEDICAL";
                     private _traumaUnits = _medicalState get "TRAUMA_UNITS";
