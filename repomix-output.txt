@@ -142,14 +142,14 @@ File: functions/config/fn_initMissionConfig.sqf
 // File: functions\config\fn_initMissionConfig.sqf
 
 // Initialize Global Mission State
-if (isNil "MISSION_STATE") then {
-    MISSION_STATE = createHashMap;
-    publicVariable "MISSION_STATE";
+if (isNil "DPC_MISSION_STATE") then {
+    DPC_MISSION_STATE = createHashMap;
+    publicVariable "DPC_MISSION_STATE";
 };
 
-if (isNil "PLATOON_ASSETS") then {
-    PLATOON_ASSETS = createHashMap;
-    publicVariable "PLATOON_ASSETS";
+if (isNil "DPC_PLATOON_ASSETS") then {
+    DPC_PLATOON_ASSETS = createHashMap;
+    publicVariable "DPC_PLATOON_ASSETS";
 };
 
 private _vehicleCapacities = createHashMap;
@@ -160,14 +160,14 @@ _vehicleCapacities set ["B_APC_Tracked_01_rcws_F", 6];    // Panther
 _vehicleCapacities set ["B_Truck_01_medical_F", 8];       // HEMTT Medical
 
 
-PLATOON_ASSETS set ["vehicle_capacities", _vehicleCapacities];
+DPC_PLATOON_ASSETS set ["vehicle_capacities", _vehicleCapacities];
 
 // Wait for player to be ready
 
 player addAction [
     "Dump Mission State",
     {
-        [MISSION_STATE] call DPC_fnc_dumpState;
+        [DPC_MISSION_STATE] call DPC_fnc_dumpState;
     }, 
     nil, 
     1.5, 
@@ -181,7 +181,7 @@ player addAction [
 player addAction [
     "Dump Platoon State", 
     {
-        [PLATOON_ASSETS] call DPC_fnc_dumpState;
+        [DPC_PLATOON_ASSETS] call DPC_fnc_dumpState;
     }, 
     nil, 
     1.5, 
@@ -373,7 +373,7 @@ File: functions/debug/fn_dumpState.sqf
     Returns: String - The formatted state dump text
     
     Example:
-    [MISSION_STATE] call DPC_fnc_dumpState;
+    [DPC_MISSION_STATE] call DPC_fnc_dumpState;
 */
 
 params [["_state", createHashMap, [createHashMap]]];
@@ -448,18 +448,18 @@ File: functions/init/fn_initPlatoonUnits.sqf
 
 params [["_groups", [], [[]]]];
 
-private _medicalState = MISSION_STATE get "sys_medical";
+private _medicalState = DPC_MISSION_STATE get "sys_medical";
 if (isNil "_medicalState") then {
     _medicalState = createHashMap;
-    MISSION_STATE set ["sys_medical", _medicalState];
+    DPC_MISSION_STATE set ["sys_medical", _medicalState];
     _medicalState set ["dead_units", []];
 };
 
 // Get platoon state
-private _platoonState = MISSION_STATE get "platoon";
+private _platoonState = DPC_MISSION_STATE get "platoon";
 if (isNil "_platoonState") then {
     _platoonState = createHashMap;
-    MISSION_STATE set ["platoon", _platoonState];
+    DPC_MISSION_STATE set ["platoon", _platoonState];
     _platoonState set ["all_units", []];
     _platoonState set ["active_units", []];
 };
@@ -511,7 +511,7 @@ if (isNil "_platoonState") then {
 //     systemChat format ["Platoon initialized: %1 total units, %2 active", _totalUnits, _activeUnits];
     
 //     // Detailed debug dump
-//     [MISSION_STATE] call DPC_fnc_dumpState;
+//     [DPC_MISSION_STATE] call DPC_fnc_dumpState;
 // };
 
 ================
@@ -592,7 +592,7 @@ params ["_vehicle"];
 
 // Get vehicle capacity
 private _vehicleType = typeOf _vehicle;
-private _maxCasualties = (PLATOON_ASSETS get "vehicle_capacities") getOrDefault [_vehicleType, 2];
+private _maxCasualties = (DPC_PLATOON_ASSETS get "vehicle_capacities") getOrDefault [_vehicleType, 2];
 
 _vehicle setVariable ["maxCasualties", _maxCasualties, true];
 
@@ -601,7 +601,7 @@ _vehicle addAction [
     {
         params ["_vehicle", "_caller", "_actionId", "_deadUnit"];
         
-        private _deadUnits = MISSION_STATE get "sys_medical" get "dead_units";
+        private _deadUnits = DPC_MISSION_STATE get "sys_medical" get "dead_units";
         private _nearestDead = objNull;
         private _casualties = _vehicle getVariable ["loadedCasualties", []];
         private _maxCasualties = _vehicle getVariable ["maxCasualties", 2];
@@ -645,7 +645,7 @@ _vehicle addAction [
     true,
     true,
     "",
-    "!isNil 'MISSION_STATE' && {count (nearestObjects [_target, ['Man'], 10] select {_x in (MISSION_STATE get 'sys_medical' get 'dead_units') && !(_x in (_target getVariable ['loadedCasualties', []]))}) > 0} && {count (_target getVariable ['loadedCasualties', []]) < (_target getVariable ['maxCasualties', 2])}"
+    "!isNil 'DPC_MISSION_STATE' && {count (nearestObjects [_target, ['Man'], 10] select {_x in (DPC_MISSION_STATE get 'sys_medical' get 'dead_units') && !(_x in (_target getVariable ['loadedCasualties', []]))}) > 0} && {count (_target getVariable ['loadedCasualties', []]) < (_target getVariable ['maxCasualties', 2])}"
 ];
 
 ================
@@ -676,7 +676,7 @@ _building addAction [
         
         // Get all dead units near building not already being treated
         private _nearbyDead = (nearestObjects [_building, ["Man"], _casevacDistance]) select {
-            _x in (MISSION_STATE get "sys_medical" get "dead_units") &&
+            _x in (DPC_MISSION_STATE get "sys_medical" get "dead_units") &&
             isNil {_x getVariable "reviveProgress"}
         };
         
@@ -716,9 +716,9 @@ _building addAction [
                     
                     // Revival complete
                     // Remove from dead units
-                    private _deadUnits = MISSION_STATE get "sys_medical" get "dead_units";
+                    private _deadUnits = DPC_MISSION_STATE get "sys_medical" get "dead_units";
                     _deadUnits = _deadUnits - [_unit];
-                    (MISSION_STATE get "sys_medical") set ["dead_units", _deadUnits];
+                    (DPC_MISSION_STATE get "sys_medical") set ["dead_units", _deadUnits];
                     
                     // Revive unit
                     _unit setDamage 0;
@@ -752,7 +752,7 @@ _building addAction [
     true,
     "",
     // Condition: Check for any nearby dead units not being treated AND facility not at capacity
-    format ["private _currentTreatments = count ((nearestObjects [_target, ['Man'], 5]) select {!isNil {_x getVariable 'reviveProgress'}}); _currentTreatments < %1 && {count ((nearestObjects [_target, ['Man'], %2]) select {_x in (MISSION_STATE get 'sys_medical' get 'dead_units') && isNil {_x getVariable 'reviveProgress'}}) > 0}", _maxTreatments, _casevacDistance]
+    format ["private _currentTreatments = count ((nearestObjects [_target, ['Man'], 5]) select {!isNil {_x getVariable 'reviveProgress'}}); _currentTreatments < %1 && {count ((nearestObjects [_target, ['Man'], %2]) select {_x in (DPC_MISSION_STATE get 'sys_medical' get 'dead_units') && isNil {_x getVariable 'reviveProgress'}}) > 0}", _maxTreatments, _casevacDistance]
 ];
 
 ================
@@ -816,8 +816,8 @@ File: functions/medical/fn_canLoadBody.sqf
 params ["_unit", "_vehicle"];
 
 // Check if unit is in dead_units and within range: 10m
-(!isNil "MISSION_STATE") &&
-{_unit in (MISSION_STATE get "sys_medical" get "dead_units")} && 
+(!isNil "DPC_MISSION_STATE") &&
+{_unit in (DPC_MISSION_STATE get "sys_medical" get "dead_units")} && 
 {_unit distance _vehicle < 10}
 
 ================
@@ -826,8 +826,8 @@ File: functions/medical/fn_handleUnitDeath.sqf
 // File: functions\medical\fn_handleUnitDeath.sqf
 params ["_unit"];
 
-if(!isNil "MISSION_STATE") then {
-    private _medicalState = MISSION_STATE get "sys_medical";
+if(!isNil "DPC_MISSION_STATE") then {
+    private _medicalState = DPC_MISSION_STATE get "sys_medical";
     private _deadUnits = _medicalState get "dead_units";
     private _reviveTime = getNumber(missionConfigFile >> "CfgConstants" >> "Medical" >> "REVIVE_TIME_LIMIT");
 
@@ -850,7 +850,7 @@ if(!isNil "MISSION_STATE") then {
                 if (!isNil "_deathTime" && 
                     (time - _deathTime >= _reviveTime) && 
                     {isNil {_unit getVariable "reviveProgress"}}) then {
-                    private _medicalState = MISSION_STATE get "sys_medical";
+                    private _medicalState = DPC_MISSION_STATE get "sys_medical";
                     private _deadUnits = _medicalState get "dead_units";
                     _deadUnits = _deadUnits - [_unit];
                     _medicalState set ["dead_units", _deadUnits];
@@ -872,9 +872,9 @@ File: functions/medical/fn_initMedicalSystems.sqf
 ================
 // File: functions\medical\fn_initMedicalSystem.sqf
 // Initialize medical state if not exists
-if (isNil {MISSION_STATE get "sys_medical"}) then {
-    MISSION_STATE set ["sys_medical", createHashMap];
-    (MISSION_STATE get "sys_medical") set ["dead_units", []];
+if (isNil {DPC_MISSION_STATE get "sys_medical"}) then {
+    DPC_MISSION_STATE set ["sys_medical", createHashMap];
+    (DPC_MISSION_STATE get "sys_medical") set ["dead_units", []];
 };
 
 // Add death handlers to all existing units
@@ -911,11 +911,11 @@ hint "Script Complete";
 ================
 File: scripts/state/platoon_assets.sqf
 ================
-PLATOON_ASSETS set ["veh_supply", createHashMap];
-PLATOON_ASSETS set ["combat_vehicles", createHashMap];
-PLATOON_ASSETS set ["transport_vehicles", createHashMap];
-PLATOON_ASSETS set ["utility_vehicles", createHashMap];
-PLATOON_ASSETS set ["turrets", createHashMap];
+DPC_PLATOON_ASSETS set ["veh_supply", createHashMap];
+DPC_PLATOON_ASSETS set ["combat_vehicles", createHashMap];
+DPC_PLATOON_ASSETS set ["transport_vehicles", createHashMap];
+DPC_PLATOON_ASSETS set ["utility_vehicles", createHashMap];
+DPC_PLATOON_ASSETS set ["turrets", createHashMap];
 
 private _trackedVehiclePool = getNumber(missionConfigFile >> "CfgConstants" >> "Supply" >> "TRACKED_VEHICLE_POOL");
 private _mrapVehiclePool = getNumber(missionConfigFile >> "CfgConstants" >> "Supply" >> "MRAP_VEHICLE_POOL");
@@ -939,7 +939,7 @@ private _mortarTurretPool = getNumber(missionConfigFile >> "CfgConstants" >> "Su
 #######################
 */
 
-private _veh_supply = PLATOON_ASSETS get "veh_supply";
+private _veh_supply = DPC_PLATOON_ASSETS get "veh_supply";
 _veh_supply set ["spawn_point", [14750.6,17085.3]];
 _veh_supply set ["last_used", 0];
 _veh_supply set ["cooldown", 60];
@@ -952,9 +952,9 @@ _veh_supply set ["cooldown", 60];
 #######################
 */
 
-(PLATOON_ASSETS get "combat_vehicles") set ["pool", createHashMap];
+(DPC_PLATOON_ASSETS get "combat_vehicles") set ["pool", createHashMap];
 
-private _com_pool = (PLATOON_ASSETS get "combat_vehicles") get "pool";
+private _com_pool = (DPC_PLATOON_ASSETS get "combat_vehicles") get "pool";
 // [vehicle class, available units, active units]
 _com_pool set ["B_APC_Tracked_01_rcws_F",[_trackedVehiclePool, 1]];
 _com_pool set ["B_MRAP_01_hmg_F", [_hmgVehiclePool, 3]];
@@ -968,9 +968,9 @@ _com_pool set ["B_MRAP_01_gmg_F",[_gmgVehiclePool, 1]];
 #######################
 */
 
-(PLATOON_ASSETS get "transport_vehicles") set ["pool", createHashMap];
+(DPC_PLATOON_ASSETS get "transport_vehicles") set ["pool", createHashMap];
 
-private _trans_pool = (PLATOON_ASSETS get "transport_vehicles") get "pool";
+private _trans_pool = (DPC_PLATOON_ASSETS get "transport_vehicles") get "pool";
 _trans_pool set ["B_Quadbike_01_F", [_quadPool, 2]];
 _trans_pool set ["B_MRAP_01_F", [_mrapVehiclePool, 2]];
 
@@ -982,9 +982,9 @@ _trans_pool set ["B_MRAP_01_F", [_mrapVehiclePool, 2]];
 #######################
 */
 
-(PLATOON_ASSETS get "utility_vehicles") set ["pool", createHashMap];
+(DPC_PLATOON_ASSETS get "utility_vehicles") set ["pool", createHashMap];
 
-private _util_pool = (PLATOON_ASSETS get "utility_vehicles") get "pool";
+private _util_pool = (DPC_PLATOON_ASSETS get "utility_vehicles") get "pool";
 _util_pool set ["B_Truck_01_ammo_F", [_ammoTruckPool, 1]];
 _util_pool set ["B_Truck_01_medical_F",[_medTruckPool, 1]];
 _util_pool set ["B_Truck_01_Repair_F",[_repairTruckPool, 1]];
@@ -998,12 +998,12 @@ _util_pool set ["B_Truck_01_fuel_F",[_fuelTruckPool, 1]];
 #######################
 */
 
-(PLATOON_ASSETS get "turrets") set ["pool", createHashMap];
+(DPC_PLATOON_ASSETS get "turrets") set ["pool", createHashMap];
 
-private _tur_pool = (PLATOON_ASSETS get "turrets") get "pool";
+private _tur_pool = (DPC_PLATOON_ASSETS get "turrets") get "pool";
 _tur_pool set ["B_HMG_01_high_F", [_hmgTurretPool, 3]];
 _tur_pool set ["B_GMG_01_high_F", [_gmgTurretPool, 2]];
 _tur_pool set ["B_static_AT_F", [_atTurretPool, 3]];
 _tur_pool set ["B_Mortar_01_F", [_mortarTurretPool, 2]];
 
-publicVariable "PLATOON_ASSETS";
+publicVariable "DPC_PLATOON_ASSETS";
