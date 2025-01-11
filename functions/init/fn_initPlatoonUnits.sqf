@@ -15,18 +15,18 @@
 
 params [["_groups", [], [[]]]];
 
-private _medicalState = MISSION_STATE get "sys_medical";
+private _medicalState = DPC_MISSION_STATE get "sys_medical";
 if (isNil "_medicalState") then {
     _medicalState = createHashMap;
-    MISSION_STATE set ["sys_medical", _medicalState];
+    DPC_MISSION_STATE set ["sys_medical", _medicalState];
     _medicalState set ["dead_units", []];
 };
 
 // Get platoon state
-private _platoonState = MISSION_STATE get "platoon";
+private _platoonState = DPC_MISSION_STATE get "platoon";
 if (isNil "_platoonState") then {
     _platoonState = createHashMap;
-    MISSION_STATE set ["platoon", _platoonState];
+    DPC_MISSION_STATE set ["platoon", _platoonState];
     _platoonState set ["all_units", []];
     _platoonState set ["active_units", []];
 };
@@ -78,5 +78,5 @@ if (isNil "_platoonState") then {
 //     systemChat format ["Platoon initialized: %1 total units, %2 active", _totalUnits, _activeUnits];
     
 //     // Detailed debug dump
-//     [MISSION_STATE] call DPC_fnc_dumpState;
+//     [DPC_MISSION_STATE] call DPC_fnc_dumpState;
 // };

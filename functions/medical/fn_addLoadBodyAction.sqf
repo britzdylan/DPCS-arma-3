@@ -3,7 +3,7 @@ params ["_vehicle"];
 
 // Get vehicle capacity
 private _vehicleType = typeOf _vehicle;
-private _maxCasualties = (PLATOON_ASSETS get "vehicle_capacities") getOrDefault [_vehicleType, 2];
+private _maxCasualties = (DPC_PLATOON_ASSETS get "vehicle_capacities") getOrDefault [_vehicleType, 2];
 
 _vehicle setVariable ["maxCasualties", _maxCasualties, true];
 
@@ -12,7 +12,7 @@ _vehicle addAction [
     {
         params ["_vehicle", "_caller", "_actionId", "_deadUnit"];
         
-        private _deadUnits = MISSION_STATE get "sys_medical" get "dead_units";
+        private _deadUnits = DPC_MISSION_STATE get "sys_medical" get "dead_units";
         private _nearestDead = objNull;
         private _casualties = _vehicle getVariable ["loadedCasualties", []];
         private _maxCasualties = _vehicle getVariable ["maxCasualties", 2];
@@ -56,5 +56,5 @@ _vehicle addAction [
     true,
     true,
     "",
-    "!isNil 'MISSION_STATE' && {count (nearestObjects [_target, ['Man'], 10] select {_x in (MISSION_STATE get 'sys_medical' get 'dead_units') && !(_x in (_target getVariable ['loadedCasualties', []]))}) > 0} && {count (_target getVariable ['loadedCasualties', []]) < (_target getVariable ['maxCasualties', 2])}"
+    "!isNil 'DPC_MISSION_STATE' && {count (nearestObjects [_target, ['Man'], 10] select {_x in (DPC_MISSION_STATE get 'sys_medical' get 'dead_units') && !(_x in (_target getVariable ['loadedCasualties', []]))}) > 0} && {count (_target getVariable ['loadedCasualties', []]) < (_target getVariable ['maxCasualties', 2])}"
 ];
