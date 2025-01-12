@@ -40,8 +40,6 @@ _vehicle addAction [
             if (_vehicle emptyPositions "cargo" == 0) then {
                 _vehicle removeAction _actionId;
             };
-            
-            // Add unload action if not already present
         };
     },
     nil,
