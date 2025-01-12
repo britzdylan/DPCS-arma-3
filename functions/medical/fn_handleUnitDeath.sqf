@@ -10,10 +10,11 @@ if(!isNil "DPC_MISSION_STATE") then {
         _unit allowDamage false;
         _unit setUnconscious true;
         _unit disableAI "ALL";
+        _unit enableAI "ANIM";
         _unit setVariable ["dpc_traumaStart", time]; // 5
         _traumaUnits pushBack _unit;
         // add action to view trauma status
-               _unit addAction [
+        _unit addAction [
             "<t color='#ff0000'>Check URGENT Casualty</t>",
             {
                 params ["_target", "_caller", "_id", "_arguments"];
@@ -66,8 +67,6 @@ if(!isNil "DPC_MISSION_STATE") then {
                     _medicalState set ["TRAUMA_UNITS", _traumaUnits];
 
                     {_unit removeAction _x} forEach (actionIDs _unit); // Remove all actions
-                    _unit allowDamage true;
-                    _unit setUnconscious false;
                     _unit enableAI "ALL";
                     _unit setDamage 1;
                     true
@@ -78,3 +77,4 @@ if(!isNil "DPC_MISSION_STATE") then {
         };
     };
 };
+
