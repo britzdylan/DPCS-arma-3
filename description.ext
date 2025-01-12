@@ -6,7 +6,7 @@ class CfgConstants
     
     // Medical System Constants
     class Medical {
-        REVIVE_TIME_LIMIT = 10;     // 10 minutes in seconds
+        REVIVE_TIME_LIMIT = 600;     // 10 minutes in seconds
         MAX_REVIVE_DISTANCE = 10;     // meters from medical building
         SKILL_PENALTY = 0.1;         // 10% skill reduction after revival
         MAX_CASEVAC_DISTANCE = 10;   // meters from vehicle

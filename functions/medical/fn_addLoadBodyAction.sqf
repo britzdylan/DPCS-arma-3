@@ -1,54 +1,47 @@
 // File: functions\medical\fn_addLoadBodyAction.sqf
 params ["_vehicle"];
 
-// Get vehicle capacity
 private _vehicleType = typeOf _vehicle;
-private _maxCasualties = (DPC_PLATOON_ASSETS get "vehicle_capacities") getOrDefault [_vehicleType, 2];
-
-_vehicle setVariable ["maxCasualties", _maxCasualties, true];
 
 _vehicle addAction [
     "Load Casualty",
     {
         params ["_vehicle", "_caller", "_actionId", "_deadUnit"];
         
-        private _deadUnits = DPC_MISSION_STATE get "sys_medical" get "dead_units";
+        private _traumaUnits = DPC_MISSION_STATE get "SYS_MEDICAL" get "TRAUMA_UNITS";
         private _nearestDead = objNull;
-        private _casualties = _vehicle getVariable ["loadedCasualties", []];
-        private _maxCasualties = _vehicle getVariable ["maxCasualties", 2];
-        
+
         // Check if vehicle is full
-        if (count _casualties >= _maxCasualties) exitWith {
-            systemChat format ["Vehicle is full! Maximum capacity: %1", _maxCasualties];
+        private _emptyPositions = _vehicle emptyPositions "cargo";
+        if (_emptyPositions == 0) exitWith {
+            systemChat "Vehicle cargo is full!";
         };
         
-        // Find nearest dead unit that isn't already loaded
+        // Find nearest trauma unit that isn't already in passenger seats
         {
-            if ([_x, _vehicle] call DPC_fnc_canLoadBody && !(_x in _casualties)) exitWith {
+            if (_x distance _vehicle < 10 && 
+                {!(_x in (crew _vehicle))} && 
+                {_x getVariable ["dpc_traumaStart", -1] != -1}) exitWith {
                 _nearestDead = _x;
             };
-        } forEach _deadUnits;
+        } forEach _traumaUnits;
         
         if (!isNull _nearestDead) then {
-            _nearestDead hideObject true;
-            _casualties pushBack _nearestDead;
-            
-            // Update vehicle variables
-            _vehicle setVariable ["loadedCasualties", _casualties, true];
-            _vehicle setVariable ["casualtyCount", count _casualties, true];
-            
-            // Add unload action if not already present
-            if (_vehicle getVariable ["unloadActionId", -1] == -1) then {
-                [_vehicle] call DPC_fnc_addUnloadBodyAction;
-            };
-            
+            // load casualty into passenger seat
+            _nearestDead moveInCargo _vehicle;
+            _nearestDead switchMove "KIA_passenger_boat_holdleft";
+            _cargoIndex = _vehicle getCargoIndex _nearestDead;
+            _vehicle lockCargo [_cargoIndex, true];
+            [_nearestDead] call DPC_fnc_addUnloadBodyAction;
             // Debug output
-            systemChat format ["Vehicle now has %1/%2 casualties", count _casualties, _maxCasualties];
+            systemChat format ["Vehicle now has %1 passenger seats remaining", (_vehicle emptyPositions "cargo")];
             
-            // Remove load action if full
-            if (count _casualties >= _maxCasualties) then {
+            // Remove load action if passenger seats are full
+            if (_vehicle emptyPositions "cargo" == 0) then {
                 _vehicle removeAction _actionId;
             };
+            
+            // Add unload action if not already present
         };
     },
     nil,
@@ -56,5 +49,5 @@ _vehicle addAction [
     true,
     true,
     "",
-    "!isNil 'DPC_MISSION_STATE' && {count (nearestObjects [_target, ['Man'], 10] select {_x in (DPC_MISSION_STATE get 'sys_medical' get 'dead_units') && !(_x in (_target getVariable ['loadedCasualties', []]))}) > 0} && {count (_target getVariable ['loadedCasualties', []]) < (_target getVariable ['maxCasualties', 2])}"
+    "!isNil 'DPC_MISSION_STATE' && {count (nearestObjects [_target, ['Man'], 10] select {_x in (DPC_MISSION_STATE get 'SYS_MEDICAL' get 'TRAUMA_UNITS') && !(_x in (crew _target))}) > 0} && {_target emptyPositions 'cargo' > 0}"
 ];
