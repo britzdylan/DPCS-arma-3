@@ -47,18 +47,22 @@ class CfgFunctions
         class Medical
         {
             file = "functions\medical";
-            class handleUnitDeath {};
-            class addLoadBodyAction {};
-            class addUnloadBodyAction {};
-            class canLoadBody {};
-            class addReviveAction {};
             class addDeathHandler {};
             class addLoadAction {};
+            class addLoadBodyAction {};
+            class addReviveAction {};
             class addUnitTraumaStatus {};
+            class addUnloadBodyAction {};
+            class beginMedicalTreatmentAction {};
+            class canLoadBody {};
+            class canLoadCasualty {};
             class checkUnitTraumaStatus {};
+            class handleUnitDeath {};
             class initMedicalSystems {
                 postInit = 1;
             };
+            class loadCasualtyAction {};
+            class startReviveProcess {};
         };
 
         class Debug
