@@ -7,6 +7,25 @@ if(!isNil "DPC_MISSION_STATE") then {
     private _reviveTimeLimit = getNumber(missionConfigFile >> "CfgConstants" >> "Medical" >> "REVIVE_TIME_LIMIT");
 
     if (!isPlayer _unit) then {
+        
+ 
+            // Create radio message based on unit's role and squad
+            private _radioMsg = format [
+                "Fuck I'm hit!", 
+                "ACTUAL"];
+            
+            // Send radio message using the reporter
+            [_unit, _radioMsg] spawn {
+                params ["_speaker", "_msg"];
+                _speaker sideChat _msg;
+            };
+            
+            // Optional: Add visual radio effect
+            private _reporterPos = getPosATL _unit;
+            private _radioObj = "Land_HelipadEmpty_F" createVehicle _reporterPos;
+            _radioObj say3D ["radioreport", 100];  // You'll need to define this sound
+            deleteVehicle _radioObj;
+
         _unit allowDamage false;
         _unit setUnconscious true;
         _unit disableAI "ALL";
