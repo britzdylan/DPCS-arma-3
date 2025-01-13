@@ -1,4 +1,4 @@
- params ["_target", "_caller", "_id", "_arguments"];
+params ["_target", "_caller", "_id", "_arguments"];
 private _reviveTimeLimit = getNumber(missionConfigFile >> "CfgConstants" >> "Medical" >> "REVIVE_TIME_LIMIT"); // 600
 private _traumaStart = _target getVariable "dpc_traumaStart"; // 5
 private _traumaTime = time - _traumaStart; // 15 - 5 = 10
