@@ -16,7 +16,7 @@ if(!isNil "DPC_MISSION_STATE") then {
         // add action to view trauma status
         _unit addAction [
             "<t color='#ff0000'>Check URGENT Casualty</t>",
-            [] call DPC_fnc_checkUnitTraumaStatus,
+            DPC_fnc_checkUnitTraumaStatus,
             nil,
             10,
             false,
@@ -24,9 +24,9 @@ if(!isNil "DPC_MISSION_STATE") then {
             "",
             "_this distance _target < 2"
         ];
-
         [_unit, _reviveTimeLimit] spawn {
-            [] call DPC_fnc_addUnitTraumaStatus;
+            params ["_unit", "_reviveTimeLimit"];
+            [_unit, _reviveTimeLimit] call DPC_fnc_addUnitTraumaStatus;
         };
     };
 };
