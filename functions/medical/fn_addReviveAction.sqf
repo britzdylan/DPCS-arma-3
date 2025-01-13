@@ -48,6 +48,8 @@ _building addAction [
                     private _startTime = time;
                     
                     // Create progress tracking variable
+                    _unit hideObject true;
+                    _unit enableSimulation false;
                     _unit setVariable ["dpc_reviveProgress", 0, true];
                     
                     // Progress loop
@@ -73,6 +75,8 @@ _building addAction [
                     _unit allowDamage true;
                     _unit enableAI "ALL"; // Re-enable AI
                     _unit switchMove ""; // Reset animation
+                    _unit enableSimulation true;
+                    _unit hideObject false;
                     
                     // set skill penalty
                     _unit setSkill ((skill _unit) - _skillPenalty);
