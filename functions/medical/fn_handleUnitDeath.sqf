@@ -8,7 +8,6 @@ if(!isNil "DPC_MISSION_STATE") then {
 
     if (!isPlayer _unit) then {
         
- 
             // Create radio message based on unit's role and squad
             private _radioMsg = format [
                 "Fuck I'm hit!", 
