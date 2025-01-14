@@ -8,7 +8,7 @@ private _fireSupport = DPC_MISSION_STATE get "SYS_FIRE_SUPPORT";
 private _fireMission = _fireSupport get "FIRE_MISSION";
 _fireMission set ["AMMO_TYPE", ""];
 _fireMission set ["AMMO_COUNT",0];
-_fireMission set ["GRID", createHashMap];
+_fireMission set ["GRID", []];
 hint "Artillery system initialized";
 // hint format ["%1", _fireMission];
 // Get the actual artillery piece
