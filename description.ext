@@ -172,6 +172,7 @@ class CfgFunctions
             class updateArtilleryAmmoUI {};
             class getArtilleryAmmo {};
             class onAmmoSelect {};
+            class openMapForTarget {};
         };
 
         class Debug
@@ -241,7 +242,16 @@ class DPC_Artillery_Dialog {
             w = 0.15 * safezoneW;
             h = 0.04 * safezoneH;
             colorBackground[] = {0.4,0,0,1};
-            onButtonClick = "[] call DPC_fnc_openMapForTarget;"; // TODO: Implement this function
+            onButtonClick = "[] call DPC_fnc_openMapForTarget;";
+        };
+
+         class SelectedTargetText: RscText {
+            idc = 9005;
+            text = "Grid: N/A";
+            x = 0.47 * safezoneW + safezoneX;
+            y = 0.4 * safezoneH + safezoneY;
+            w = 0.15 * safezoneW;
+            h = 0.03 * safezoneH;
         };
         
         ////////////////////////////////////////////////////////
@@ -251,7 +261,7 @@ class DPC_Artillery_Dialog {
             idc = -1;
             text = "Number of Rounds:";
             x = 0.47 * safezoneW + safezoneX;
-            y = 0.4 * safezoneH + safezoneY;
+            y = 0.48 * safezoneH + safezoneY;
             w = 0.15 * safezoneW;
             h = 0.03 * safezoneH;
         };
@@ -259,7 +269,7 @@ class DPC_Artillery_Dialog {
         class RoundsInput: RscEdit {
             idc = 9003;
             x = 0.47 * safezoneW + safezoneX;
-            y = 0.44 * safezoneH + safezoneY;
+            y = 0.52 * safezoneH + safezoneY;
             w = 0.15 * safezoneW;
             h = 0.03 * safezoneH;
             text = "1";
