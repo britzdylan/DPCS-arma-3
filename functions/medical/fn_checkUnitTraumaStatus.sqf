@@ -1,9 +1,8 @@
 params ["_target", "_caller", "_id", "_arguments"];
-private _reviveTimeLimit = getNumber(missionConfigFile >> "CfgConstants" >> "Medical" >> "REVIVE_TIME_LIMIT"); // 600
-private _traumaStart = _target getVariable "dpc_traumaStart"; // 5
+private _traumaStart = _target getVariable "DPCS_SYSMED_TRAUMA_START"; // 5
 private _traumaTime = time - _traumaStart; // 15 - 5 = 10
-private _traumaTimeLeft = _reviveTimeLimit - _traumaTime; // 600 - 10 = 590 seconds left
-private _unitReviveTime = getNumber(missionConfigFile >> "CfgConstants" >> "Medical" >> "REVIVE_TIME"); // 60 seconds
+private _traumaTimeLeft = DPCS_SYSMED_REVIVE_TIME_LIMIT - _traumaTime; // 600 - 10 = 590 seconds left
+
 // Format time with leading zeros
 private _minutes = floor(_traumaTimeLeft / 60); // 205 / 60 = 3
 private _seconds = floor(_traumaTimeLeft % 60); // 205 % 60 = 25

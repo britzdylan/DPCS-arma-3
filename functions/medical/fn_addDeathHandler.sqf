@@ -5,11 +5,11 @@ private _eligibleUnits = allUnits select {
         alive _x && 
         {!isPlayer _x} && 
         {side _x == playerSide} && 
-        {!(_x getVariable ["DPC_IS_EXCLUDED", false])} &&
-        {isNil {_x getVariable "DPC_traumaHandler"}};
+        {!(_x getVariable ["DPC_SYSMED_EXCLUDE", false])} &&
+        {isNil {_x getVariable "DPC_SYSMED_TRAUMA_HANDLER"}};
 
     if (!_isValidUnit) then {
-        diag_log format ["[DPC] Warning: Invalid unit found: %1", _x];
+        diag_log format ["[DPC: SYSMED] Warning: Invalid unit found: %1", _x];
     };
 
     _isValidUnit
@@ -22,5 +22,5 @@ private _eligibleUnits = allUnits select {
                     [_unit] call DPC_fnc_handleUnitDeath;
                 };
         }];
-    _x setVariable ["DPC_traumaHandler", _handlerId];
+    _x setVariable ["DPC_SYSMED_TRAUMA_HANDLER", _handlerId];
 } forEach _eligibleUnits;
