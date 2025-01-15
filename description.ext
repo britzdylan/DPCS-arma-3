@@ -157,18 +157,18 @@ class CfgFunctions
             class startSurgeryAmbientAnim {};
         };
 
-        class FireSupport 
-        {
-            file = "functions\fire_support";
-            class initArtillerySystem {
-                postInit = 1;
-            };
-            class openArtilleryMenu {};
-            class updateArtilleryAmmoUI {};
-            class getArtilleryAmmo {};
-            class onAmmoSelect {};
-            class openMapForTarget {};
-        };
+        // class FireSupport 
+        // {
+        //     file = "functions\fire_support";
+        //     class initArtillerySystem {
+        //         postInit = 1;
+        //     };
+        //     class openArtilleryMenu {};
+        //     class updateArtilleryAmmoUI {};
+        //     class getArtilleryAmmo {};
+        //     class onAmmoSelect {};
+        //     class openMapForTarget {};
+        // };
 
         class Debug
         {
