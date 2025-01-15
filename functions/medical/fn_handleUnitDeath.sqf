@@ -21,11 +21,11 @@ if (!isPlayer _unit) then {
     _radioObj say3D ["radioreport", 100];  // You'll need to define this sound
     deleteVehicle _radioObj;
 
+    _unit setVariable ["DPCS_SYSMED_TRAUMA_START", time]; // 5
     _unit allowDamage false;
     _unit setUnconscious true;
     _unit disableAI "ALL";
     _unit enableAI "ANIM";
-    _unit setVariable ["DPCS_SYSMED_TRAUMA_START", time]; // 5
 
     DPCS_SYSMED_TRAUMA_UNITS pushBack _unit;
 

@@ -57,8 +57,8 @@ _building addAction [
                     _unit setDamage 0;
                     _unit setUnconscious false;
                     _unit allowDamage true;
-                    _unit enableAI "ALL"; // Re-enable AI
                     _unit switchMove ""; // Reset animation
+                    _unit enableAI "ALL"; // Re-enable AI
                     _unit enableSimulation true;
                     _unit hideObject false;
                     _unit setSkill ((skill _unit) - DPCS_SYSMED_SKILL_PENALTY);

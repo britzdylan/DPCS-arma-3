@@ -3,6 +3,10 @@ params ["_vehicle", "_caller", "_actionId", "_deadUnit"];
 private _traumaUnits = DPCS_SYSMED_TRAUMA_UNITS;
 private _nearestDead = objNull;
 
+if (isNil "_traumaUnits" || {count _traumaUnits == 0}) exitWith {
+    systemChat "No casualties to load";
+};
+
 if (_vehicle emptyPositions "cargo" == 0) exitWith {
     systemChat "Vehicle cargo is full!";
 };

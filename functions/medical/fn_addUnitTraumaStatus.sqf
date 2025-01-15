@@ -10,6 +10,8 @@ waitUntil {
         {_unit removeAction _x} forEach (actionIDs _unit); // Remove all actions
         _unit enableAI "ALL";
         _unit setDamage 1;
+        _unit setVariable ["DPCS_SYSMED_TRAUMA_START", nil];
+        _unit setVariable ["DPCS_SYSMED_REVIVE_PROGRESS", nil];
         true
     } else {
         false
