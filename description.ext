@@ -97,18 +97,16 @@ class RscEdit {
 class CfgConstants 
 {
     // General Mission Settings
-    MISSION_NAME = "Dynamic Platoon Command";
-    MISSION_AUTHOR = "Dylan Britz";
-    
-    // Medical System Constants
-    class Medical {
-        REVIVE_TIME_LIMIT = 600;     // 10 minutes in seconds
-        REVIVE_TIME = 60;            // 60 seconds to revive
-        MAX_REVIVE_DISTANCE = 20;     // meters from medical building
-        SKILL_PENALTY = 0.1;         // 10% skill reduction after revival
-        MAX_CASEVAC_DISTANCE = 10;   // meters from vehicle
-        MAX_MEDICAL_FACILITY_CAPACITY = 2; // Number of patients that can be treated at once
-    };
+    class DPCS_CONFIG {
+        MISSION_NAME = "DPCS: Dynamic Platoon Command System";
+        MISSION_AUTHOR = "Dylan Britz";
+        ENABLED = 1; // Enable the DPCS system
+        DEBUG = 1; // Enable debug mode
+        DPCS_MEDICAL = 1; // Enable the medical system
+        DPCS_FIRE_SUPPORT = 1; // Enable the fire support system
+        DPCS_SUPPLY = 1; // Enable the supply system
+        DPCS_TRANSPORT = 1; // Enable the transport system
+    }
 
     // Resupply unit constants
     class SupplyPool {
