@@ -22,9 +22,9 @@ publicVariable "DPCS_SYSMED_MAX_MEDICAL_FACILITY_CAPACITY";
 [] call DPC_fnc_addDeathHandler;
 [] call DPC_fnc_addLoadAction;
 
-
-// in game building with variable name trauma_unit
-[trauma_unit] call DPC_fnc_addReviveAction;
+{ 
+ [_x] call DPC_fnc_addReviveAction;    
+} forEach DPCS_SYSMED_MEDICAL_FACILITIES;
 
 surgeon disableAI "ANIM";      // Prevent AI from changing animations
 surgeon disableAI "MOVE";      // Prevent AI from moving

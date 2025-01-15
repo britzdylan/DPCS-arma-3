@@ -1,6 +1,6 @@
 params ["_vehicle", "_caller", "_actionId", "_deadUnit"];
 
-private _traumaUnits = DPC_MISSION_STATE get "SYS_MEDICAL" get "TRAUMA_UNITS";
+private _traumaUnits = DPCS_SYSMED_TRAUMA_UNITS;
 private _nearestDead = objNull;
 
 if (_vehicle emptyPositions "cargo" == 0) exitWith {
@@ -8,9 +8,9 @@ if (_vehicle emptyPositions "cargo" == 0) exitWith {
 };
 
 {
-    if (_x distance _vehicle < 10 && 
+    if (_x distance _vehicle < DPCS_SYSMED_MAX_CASEVAC_DISTANCE && 
         {!(_x in (crew _vehicle))} && 
-        {_x getVariable ["dpc_traumaStart", -1] != -1}) exitWith {
+        {_x getVariable ["DPCS_SYSMED_TRAUMA_START", -1] != -1}) exitWith {
         _nearestDead = _x;
     };
 } forEach _traumaUnits;
