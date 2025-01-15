@@ -13,7 +13,7 @@ DPCS_SYSMED_MAX_MEDICAL_FACILITY_CAPACITY = 2; // Number of patients that can be
 { 
     publicVariable _x 
 } forEach [
-    "DPCS_SYSMED_TRAUMA_UNITS"
+    "DPCS_SYSMED_TRAUMA_UNITS",
     "DPCS_SYSMED_MEDICAL_FACILITIES",
     "DPCS_SYSMED_REVIVE_TIME_LIMIT",
     "DPCS_SYSMED_REVIVE_TIME",
@@ -28,4 +28,4 @@ DPCS_SYSMED_MAX_MEDICAL_FACILITY_CAPACITY = 2; // Number of patients that can be
 { 
  [_x] call DPC_fnc_addReviveAction;    
 } forEach DPCS_SYSMED_MEDICAL_FACILITIES;
-[] call DPC_fnc_startSurgeryAmbientAnim;
+[true] call DPC_fnc_startSurgeryAmbientAnim;

@@ -1,4 +1,4 @@
-params ["_show"]
+params ["_show"];
 
 surgeon hideObject _show;
 surgeon enableSimulation _show;

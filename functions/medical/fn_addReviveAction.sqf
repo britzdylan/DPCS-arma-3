@@ -79,5 +79,13 @@ _building addAction [
     true,
     "",
     // Condition: Check for any nearby dead units not being treated AND facility not at capacity
-    format ["private _currentTreatments = count ((nearestObjects [_target, ['Man'], DPCS_SYSMED_MAX_REVIVE_DISTANCE]) select {!isNil {_x getVariable 'DPCS_SYSMED_REVIVE_PROGRESS'}}); _currentTreatments < DPCS_SYSMED_MAX_MEDICAL_FACILITY_CAPACITY && {count ((nearestObjects [_target, ['Man'], DPCS_SYSMED_MAX_REVIVE_DISTANCE]) select {_x in DPCS_SYSMED_TRAUMA_UNITS && isNil {_x getVariable 'DPCS_SYSMED_REVIVE_PROGRESS'}}) > 0}"]
+    "
+    private _nearbyUnits = nearestObjects [_target, ['Man'], DPCS_SYSMED_MAX_REVIVE_DISTANCE];
+    private _currentTreatments = count (_nearbyUnits select {!isNil {_x getVariable 'DPCS_SYSMED_REVIVE_PROGRESS'}});
+    private _hasUntreatedCasualties = count (_nearbyUnits select {
+    _x in DPCS_SYSMED_TRAUMA_UNITS && 
+    isNil {_x getVariable 'DPCS_SYSMED_REVIVE_PROGRESS'}
+    }) > 0;
+    _currentTreatments < DPCS_SYSMED_MAX_MEDICAL_FACILITY_CAPACITY && _hasUntreatedCasualties
+    "
 ];
