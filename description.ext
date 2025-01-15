@@ -131,13 +131,6 @@ class CfgFunctions
     class DPC
     {
         tag = "DPC";
-
-        class Config {
-            file = "functions\config";
-            class initMissionConfig {
-                postInit = 1;
-            };
-        };
         
         class Medical
         {
@@ -169,15 +162,6 @@ class CfgFunctions
         //     class onAmmoSelect {};
         //     class openMapForTarget {};
         // };
-
-        class Debug
-        {
-            file = "functions\debug";
-            class dumpState {};
-            class initDebug {
-                postInit = 1;
-            };
-        }
     };
 };
 

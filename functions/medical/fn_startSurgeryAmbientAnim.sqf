@@ -1,10 +1,10 @@
 params ["_show"];
 
-surgeon hideObject _show;
-surgeon enableSimulation _show;
+surgeon hideObject true;
+surgeon enableSimulation false;
 
-patient hideObject _show;
-patient enableSimulation _show;
+patient hideObject true;
+patient enableSimulation false;
 
 surgeon disableAI "ANIM";
 surgeon disableAI "MOVE";
