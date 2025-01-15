@@ -148,16 +148,13 @@ class CfgFunctions
             class addReviveAction {};
             class addUnitTraumaStatus {};
             class addUnloadBodyAction {};
-            class beginMedicalTreatmentAction {};
-            class canLoadBody {};
-            class canLoadCasualty {};
             class checkUnitTraumaStatus {};
             class handleUnitDeath {};
             class initMedicalSystems {
                 postInit = 1;
             };
             class loadCasualtyAction {};
-            class startReviveProcess {};
+            class startSurgeryAmbientAnim {};
         };
 
         class FireSupport 

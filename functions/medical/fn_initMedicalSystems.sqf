@@ -21,21 +21,7 @@ publicVariable "DPCS_SYSMED_MAX_MEDICAL_FACILITY_CAPACITY";
 
 [] call DPC_fnc_addDeathHandler;
 [] call DPC_fnc_addLoadAction;
-
 { 
  [_x] call DPC_fnc_addReviveAction;    
 } forEach DPCS_SYSMED_MEDICAL_FACILITIES;
-
-surgeon disableAI "ANIM";      // Prevent AI from changing animations
-surgeon disableAI "MOVE";      // Prevent AI from moving
-surgeon disableAI "PATH";      // Prevent AI from pathfinding
-surgeon disableAI "TARGET";    // Prevent AI from targeting
-surgeon disableAI "FSM";       // Prevent AI behavior scriptssurgeon
-surgeon switchMove "AinvPknlMstpSnonWnonDr_medic0";
-
-patient disableAI "ANIM";      // Prevent AI from changing animations
-patient disableAI "MOVE";      // Prevent AI from moving
-patient disableAI "PATH";      // Prevent AI from pathfinding
-patient disableAI "TARGET";    // Prevent AI from targeting
-patient disableAI "FSM";       // Prevent AI behavior scriptssurgeon
-patient switchMove "ainjppnemstpsnonwnondnon_rolltoback";
+[] call DPC_fnc_startSurgeryAmbientAnim;
