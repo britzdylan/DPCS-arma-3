@@ -13,7 +13,8 @@ if (_vehicle emptyPositions "cargo" == 0) exitWith {
 
 {
     if (_x distance _vehicle < DPCS_SYSMED_MAX_CASEVAC_DISTANCE && 
-        {!(_x in (crew _vehicle))} && 
+        {!(_x in (crew _vehicle))} &&
+        {isNil { _x  getVariable "DPCS_SYSMED_REVIVE_PROGRESS"}} &&
         {_x getVariable ["DPCS_SYSMED_TRAUMA_START", -1] != -1}) exitWith {
         _nearestDead = _x;
     };

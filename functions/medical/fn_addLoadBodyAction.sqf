@@ -4,7 +4,8 @@ private _conditionStr = "
 private _nearbyUnits = nearestObjects [_target, ['Man'], DPCS_SYSMED_MAX_CASEVAC_DISTANCE];
 private _loadableCasualties = count (_nearbyUnits select {
     _x in DPCS_SYSMED_TRAUMA_UNITS && 
-    !(_x in (crew _target))
+    !(_x in (crew _target)) &&
+    isNil {_x getVariable 'DPCS_SYSMED_REVIVE_PROGRESS'}
 }) > 0;
 _loadableCasualties && {_target emptyPositions 'cargo' > 0}
 ";

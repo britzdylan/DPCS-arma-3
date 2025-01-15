@@ -5,11 +5,12 @@ _building addAction [
     "Begin Medical Treatment",
     {
         params ["_building", "_caller", "_actionId"];
-        
         // Count current treatments
         private _currentTreatments = count ((nearestObjects [_building, ["Man"], DPCS_SYSMED_MAX_REVIVE_DISTANCE]) select {
             !isNil {_x getVariable "DPCS_SYSMED_REVIVE_PROGRESS"}
         });
+        DPCS_SYSMED_ACTIVE_TREATMENTS = _currentTreatments;
+
         
         // Get all dead units near building not already being treated
         private _nearbyDead = (nearestObjects [_building, ["Man"], DPCS_SYSMED_MAX_REVIVE_DISTANCE]) select {
@@ -27,11 +28,10 @@ _building addAction [
         if (count _nearbyDead > 0) then {
             // Limit number of new treatments to available slots
             private _unitsToTreat = _nearbyDead select [0, _availableSlots];
-            
             // Start revival process for each dead unit
             {
                 private _deadUnit = _x;
-                
+                 DPCS_SYSMED_ACTIVE_TREATMENTS = DPCS_SYSMED_ACTIVE_TREATMENTS + 1;
                 // Start revival process and pass the needed variables
                 [_deadUnit, _building] spawn {
                     params ["_unit", "_building"];
@@ -61,10 +61,12 @@ _building addAction [
                     _unit enableAI "ALL"; // Re-enable AI
                     _unit enableSimulation true;
                     _unit hideObject false;
+                    {_unit removeAction _x} forEach (actionIDs _unit); // Remove all actions
                     _unit setSkill ((skill _unit) - DPCS_SYSMED_SKILL_PENALTY);
                     _unit setVariable ["DPCS_SYSMED_TRAUMA_START", nil, true];
                     systemChat format ["%1 has been revived", name _unit];
                     _unit setVariable ["DPCS_SYSMED_REVIVE_PROGRESS", nil, true];
+                    DPCS_SYSMED_ACTIVE_TREATMENTS = DPCS_SYSMED_ACTIVE_TREATMENTS - 1;
                 };
             } forEach _unitsToTreat;
             

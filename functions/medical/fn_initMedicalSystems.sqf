@@ -12,6 +12,7 @@ if(_isEnabled == 1 && _isMedicalEnabled == 1) then {
     DPCS_SYSMED_SKILL_PENALTY = 0.1;
     DPCS_SYSMED_MAX_CASEVAC_DISTANCE = 15;
     DPCS_SYSMED_MAX_MEDICAL_FACILITY_CAPACITY = 2;
+    DPCS_SYSMED_ACTIVE_TREATMENTS = 0;
 
     { 
         publicVariable _x 
@@ -23,7 +24,8 @@ if(_isEnabled == 1 && _isMedicalEnabled == 1) then {
         "DPCS_SYSMED_MAX_REVIVE_DISTANCE",
         "DPCS_SYSMED_SKILL_PENALTY",
         "DPCS_SYSMED_MAX_CASEVAC_DISTANCE",
-        "DPCS_SYSMED_MAX_MEDICAL_FACILITY_CAPACITY"
+        "DPCS_SYSMED_MAX_MEDICAL_FACILITY_CAPACITY",
+        "DPCS_SYSMED_ACTIVE_TREATMENTS"
         ];
 
     [] call DPC_fnc_addDeathHandler;
@@ -31,7 +33,7 @@ if(_isEnabled == 1 && _isMedicalEnabled == 1) then {
     { 
     [_x] call DPC_fnc_addReviveAction;    
     } forEach DPCS_SYSMED_MEDICAL_FACILITIES;
-    [true] call DPC_fnc_startSurgeryAmbientAnim;
+    [] call DPC_fnc_startSurgeryAmbientAnim;
 };
 
 if(_isDebug == 1) then {
@@ -51,7 +53,8 @@ if(_isDebug == 1) then {
                 "MAX_REVIVE_DISTANCE: ",
                 "SKILL_PENALTY: ",
                 "MAX_CASEVAC_DISTANCE: ",
-                "MAX_MEDICAL_FACILITY_CAPACITY: "
+                "MAX_MEDICAL_FACILITY_CAPACITY: ",
+                "ACTIVE_TREATMENTS: "
             ];
 
             private _vars = [
@@ -62,7 +65,8 @@ if(_isDebug == 1) then {
                 DPCS_SYSMED_MAX_REVIVE_DISTANCE,
                 DPCS_SYSMED_SKILL_PENALTY,
                 DPCS_SYSMED_MAX_CASEVAC_DISTANCE,
-                DPCS_SYSMED_MAX_MEDICAL_FACILITY_CAPACITY
+                DPCS_SYSMED_MAX_MEDICAL_FACILITY_CAPACITY,
+                DPCS_SYSMED_ACTIVE_TREATMENTS
             ];
 
             {
