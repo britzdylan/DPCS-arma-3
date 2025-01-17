@@ -23,9 +23,6 @@ class CfgConstants
         HMG_VEHICLE_POOL = 10;
         GMG_VEHICLE_POOL = 7;
         QUAD_POOL = 20;
-        HMG_TURRET_POOL = 55;
-        GMG_TURRET_POOL = 25;
-        AT_TURRET_POOL = 15;
     };
 };
 
@@ -53,6 +50,13 @@ class CfgFunctions
             class startSurgeryAmbientAnim {};
         };
 
+        class Supply
+        {
+            file = "functions\supply";
+            class turretsSupply {};
+            class addPlatoonGear {};
+        }
+
         class Util
         {
             file = "functions\util";
@@ -61,6 +65,9 @@ class CfgFunctions
             class dropStatic {};
             class isCarrying {};
             class adjustStaticHeight {};
+            class processAllStatics {
+                postInit = 1;
+            };
         };
 
         // class FireSupport 
