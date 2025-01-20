@@ -19,9 +19,9 @@ class CfgConstants
     // Resupply unit constants
     class SupplyPool {
         TRACKED_VEHICLE_POOL = 1;
-        MRAP_VEHICLE_POOL = 15;
-        HMG_VEHICLE_POOL = 10;
-        GMG_VEHICLE_POOL = 7;
+        MRAP_VEHICLE_POOL = 12;
+        HMG_VEHICLE_POOL = 6;
+        GMG_VEHICLE_POOL = 3;
         QUAD_POOL = 20;
     };
 };
@@ -55,6 +55,7 @@ class CfgFunctions
             file = "functions\supply";
             class turretsSupply {};
             class addPlatoonGear {};
+            class requestVehicle {};
         }
 
         class Util
@@ -65,6 +66,7 @@ class CfgFunctions
             class dropStatic {};
             class isCarrying {};
             class adjustStaticHeight {};
+            class slingLoadVehicle {};
             class processAllStatics {
                 postInit = 1;
             };
