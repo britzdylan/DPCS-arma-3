@@ -1,6 +1,7 @@
 #include "\a3\ui_f\hpp\defineCommonGrids.inc"
 #include "\a3\ui_f\hpp\defineCommonColors.inc"
 #include "ui\dialogs\artillery_dialog.hpp"
+#include "ui\dialogs\vehicle_supply_dialog.hpp"
 
 class CfgConstants 
 {
@@ -14,15 +15,6 @@ class CfgConstants
         DPCS_FIRE_SUPPORT = 1; // Enable the fire support system
         DPCS_SUPPLY = 1; // Enable the supply system
         DPCS_TRANSPORT = 1; // Enable the transport system
-    }
-
-    // Resupply unit constants
-    class SupplyPool {
-        TRACKED_VEHICLE_POOL = 1;
-        MRAP_VEHICLE_POOL = 12;
-        HMG_VEHICLE_POOL = 6;
-        GMG_VEHICLE_POOL = 3;
-        QUAD_POOL = 20;
     };
 };
 
@@ -56,6 +48,11 @@ class CfgFunctions
             class turretsSupply {};
             class addPlatoonGear {};
             class requestVehicle {};
+            class onVehicleSelect {};
+            class openVehicleSupplyDialog {};
+            class initVehicleSupply {
+                postInit = 1;
+            };
         }
 
         class Util

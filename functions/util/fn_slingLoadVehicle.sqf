@@ -37,7 +37,6 @@ private _heliGroup = createGroup west;
 private _heli = createVehicle [_heliClass, _spawnPos, [], 0, "FLY"];
 private _pilot = _heliGroup createUnit ["B_Helipilot_F", [0,0,0], [], 0, "NONE"];
 _pilot moveInDriver _heli;
-player moveInCargo _heli;
 _heliGroup selectLeader _pilot;
 
 // Create vehicle slightly below helicopter
@@ -61,26 +60,28 @@ _heliGroup setCombatMode "BLUE";
 
 // Function to create waypoint
 private _fnc_createWP = {
-params ["_group", "_pos", "_type", "_behavior", "_speed", "_radius", "_index"];
-private _indexDefault = count waypoints _group -1;
-private _customIndex = if (isNil _index) then {_indexDefault} else {_index};
-private _wp = _group addWaypoint [_pos, 0];
-_wp setWaypointType _type;
-_wp setWaypointBehaviour _behavior;
-_wp setWaypointSpeed _speed;
-_wp setWaypointCompletionRadius _radius;
-_wp;
+    params ["_group", "_pos", "_type", "_behavior", "_speed", "_radius", "_index"];
+    private _indexDefault = count waypoints _group -1;
+    private _customIndex = if (isNil _index) then {_indexDefault} else {_index};
+    private _wp = _group addWaypoint [_pos, 0];
+    _wp setWaypointType _type;
+    _wp setWaypointBehaviour _behavior;
+    _wp setWaypointSpeed _speed;
+    _wp setWaypointCompletionRadius _radius;
+    _wp;
 };
 
 // Move to drop position
 [_heliGroup, _dropPos, "MOVE", "CARELESS", "NORMAL", 5] call _fnc_createWP;
 // Drop sequence
 [_fnc_createWP, _heli, _dropPos, _heliGroup, _basePos] spawn {
-params ["_fnc_createWP", "_heli", "_dropPos", "_heliGroup", "_basePos"];
-waitUntil {_heli distance2D _dropPos < 150};
-sleep 1;
-[_heliGroup, _dropPos, "UNHOOK", "CARELESS", "NORMAL", 5] call _fnc_createWP;
-private _wpEnd = [_heliGroup, _basePos vectorAdd [0,0,100], "MOVE", "CARELESS", "NORMAL", 150] call _fnc_createWP;
-_wpEnd setWaypointStatements ["true", "{deleteVehicle (vehicle _x)} forEach thisList; {deleteVehicle _x} forEach thisList"];
+    params ["_fnc_createWP", "_heli", "_dropPos", "_heliGroup", "_basePos"];
+    waitUntil {_heli distance2D _dropPos < 150};
+    sleep 1;
+    [_heliGroup, _dropPos, "UNHOOK", "CARELESS", "NORMAL", 5] call _fnc_createWP;
+    private _wpEnd = [_heliGroup, _basePos vectorAdd [0,0,100], "MOVE", "CARELESS", "NORMAL", 150] call _fnc_createWP;
+    _wpEnd setWaypointStatements ["true", "{deleteVehicle (vehicle _x)} forEach thisList; {deleteVehicle _x} forEach thisList"];
+    DPCS_SYSUPPLY_IN_PROGRESS = false;
 };
+
 [_heli, _vehicle]
