@@ -2,6 +2,7 @@
 #include "\a3\ui_f\hpp\defineCommonColors.inc"
 #include "ui\dialogs\artillery_dialog.hpp"
 #include "ui\dialogs\vehicle_supply_dialog.hpp"
+#include "ui\dialogs\squad_dialog.hpp"
 
 class CfgConstants 
 {
@@ -50,6 +51,14 @@ class CfgFunctions
             class requestVehicle {};
             class onVehicleSelect {};
             class openVehicleSupplyDialog {};
+            class updateSquadList {};
+            class openCompanyDialog {};
+            class onSquadSelect {};
+            class takeCommand {};
+            class initCompanyData {};
+            class initUnitSupply {
+                postInit = 1;
+            };
             class initVehicleSupply {
                 postInit = 1;
             };

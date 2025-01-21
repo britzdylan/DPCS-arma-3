@@ -19,7 +19,7 @@ if(_isEnabled == 1 && _isSupplyEnabled == 1) then {
         "DPCS_SYSUPPLY_QUAD_POOL"
     ];
 
-    testPole addAction [
+    player addAction [
         "Request Vehicle Supply",
         DPC_fnc_openVehicleSupplyDialog,
         nil,
