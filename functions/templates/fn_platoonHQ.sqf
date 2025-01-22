@@ -13,13 +13,13 @@
             case "B_Soldier_F": {
                 [_unit] spawn DPC_fnc_platoonRTO;
             };
-            case "B_Medic_F": {
+            case "B_medic_F": {
                 [_unit] spawn DPC_fnc_platoonMedic;
             };
             case "B_soldier_repair_F" : {
                 [_unit] spawn DPC_fnc_platoonRepairSpc;
             };
-            case "B_Engineer_F" : {
+            case "B_engineer_F" : {
                 [_unit] spawn DPC_fnc_platoonEngineer;
             };
         };
