@@ -12,10 +12,10 @@ class CfgConstants
         MISSION_AUTHOR = "Dylan Britz";
         ENABLED = 1; // Enable the DPCS system
         DEBUG = 1; // Enable debug mode
-        DPCS_MEDICAL = 1; // Enable the medical system
-        DPCS_FIRE_SUPPORT = 1; // Enable the fire support system
+        DPCS_MEDICAL = 0; // Enable the medical system
+        DPCS_FIRE_SUPPORT = 0; // Enable the fire support system
         DPCS_SUPPLY = 1; // Enable the supply system
-        DPCS_TRANSPORT = 1; // Enable the transport system
+        DPCS_TRANSPORT = 0; // Enable the transport system
     };
 };
 
@@ -43,25 +43,44 @@ class CfgFunctions
             class startSurgeryAmbientAnim {};
         };
 
+    
+
+        class SupplyGear {
+            file = "functions\supply\gear";
+            class addCompanyGear {};
+        }
+
+        class SupplyCompany {
+            file = "functions\supply\company";
+            class loadoutCompanyHQ {};
+            class loadoutPlatoonHQ {};
+            class loadoutSquads {};
+            class loadoutInfantrySquad {};
+            class setupLoadouts {};
+        }
+        
+        class SupplyBase 
+        {
+            file = "functions\supply\base";
+            class turretsSupply {};
+        };
+
+        class SupplyDialog
+        {
+            file = "functions\supply\dialog";
+            class openVehicleSupplyDialog {};
+            class openVehicleSupplyDialog {};
+            class openCompanySupplyDialog {};
+            class onVehicleSelect {};
+            class onSquadSelect {};
+            class requestVehicle {};
+            class takeCommand {};
+        };
+
         class Supply
         {
             file = "functions\supply";
-            class turretsSupply {};
-            class addCompanyGear {};
-            class requestVehicle {};
-            class onVehicleSelect {};
-            class openVehicleSupplyDialog {};
-            class updateSquadList {};
-            class openCompanyDialog {};
-            class onSquadSelect {};
-            class takeCommand {};
-            class setupLoadouts {
-                postInit = 1;
-            };
-            class initUnitSupply {
-                postInit = 1;
-            };
-            class initVehicleSupply {
+            class initSupplySystem {
                 postInit = 1;
             };
         }

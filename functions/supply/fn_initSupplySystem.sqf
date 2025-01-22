@@ -1,34 +1,44 @@
 private _isEnabled = getNumber (missionConfigFile >> "CfgConstants" >> "DPCS_CONFIG" >> "ENABLED");
 private _isDebug = getNumber (missionConfigFile >> "CfgConstants" >> "DPCS_CONFIG" >> "DEBUG");
 private _isSupplyEnabled = getNumber (missionConfigFile >> "CfgConstants" >> "DPCS_CONFIG" >> "DPCS_SUPPLY");
-if(_isEnabled == 1 && _isSupplyEnabled == 1) then {
 
+if(_isEnabled == 1 && _isSupplyEnabled == 1) then {
     DPCS_SYSUPPLY_MRAP_VEHICLE_POOL = 12;
     DPCS_SYSUPPLY_HMG_VEHICLE_POOL = 6;
     DPCS_SYSUPPLY_GMG_VEHICLE_POOL = 3;
     DPCS_SYSUPPLY_QUAD_POOL = 12;
     DPCS_SYSUPPLY_IN_PROGRESS = false;
-
-
+    DPCS_SYSSUPPLY_SQUADS = [
+        gulf, squad_1, squad_1_1, squad_1_2, squad_1_3, squad_2, squad_2_1, squad_2_2, squad_2_3, squad_3, squad_3_1, squad_3_2, squad_3_3, squad_4, squad_4_1, squad_4_2, squad_4_3, squad_4_4, squad_4_5, squad_4_6
+    ];
+    
     { 
         publicVariable _x 
     } forEach [
         "DPCS_SYSUPPLY_MRAP_VEHICLE_POOL",
         "DPCS_SYSUPPLY_HMG_VEHICLE_POOL",
         "DPCS_SYSUPPLY_GMG_VEHICLE_POOL",
-        "DPCS_SYSUPPLY_QUAD_POOL"
+        "DPCS_SYSUPPLY_QUAD_POOL",
+        "DPCS_SYSSUPPLY_SQUADS"
     ];
 
-    player addAction [
+    if (!isNil "DPC_OpenVehicleSupplyDialogAction") then {
+        player removeAction DPC_OpenVehicleSupplyDialogAction;
+    };
+
+    DPC_OpenVehicleSupplyDialogAction = player addAction [
         "Request Vehicle Supply",
-        DPC_fnc_openVehicleSupplyDialog,
-        nil,
-        1.5,
-        true,
-        true,
-        "",
-        "true"
+        {[] call DPC_fnc_openVehicleSupplyDialog}
     ];
+
+    if (!isNil "DPC_OpenCompanyDialogAction") then {
+        player removeAction DPC_OpenCompanyDialogAction;
+    };
+
+    DPC_OpenCompanyDialogAction = player addAction ["Open Company Command", {[] call DPC_fnc_openCompanyDialog}];
+
+    [company_gear] call DPC_fnc_addCompanyGear; // Add company gear to crate
+    [turret_supply] call DPC_fnc_turretsSupply; // Add turrets to crate
 };
 
 if(_isDebug == 1) then {
