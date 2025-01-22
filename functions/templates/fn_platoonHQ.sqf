@@ -8,13 +8,13 @@
 
         switch (_unitClass) do {
             case "B_Soldier_TL_F": {
-                [_unit] spawn DPC_fnc_platoonLeader;
+                [_unit] spawn DPC_fnc_teamLeader;
             };
             case "B_Soldier_F": {
-                [_unit] spawn DPC_fnc_platoonRTO;
+                [_unit] spawn DPC_fnc_RTO;
             };
             case "B_medic_F": {
-                [_unit] spawn DPC_fnc_platoonMedic;
+                [_unit] spawn DPC_fnc_medic;
             };
             case "B_soldier_repair_F" : {
                 [_unit] spawn DPC_fnc_platoonRepairSpc;

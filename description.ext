@@ -86,19 +86,32 @@ class CfgFunctions
             file = "functions\templates";
             class companyHQ {};
             class platoonHQ {};
+            class setupInfantrySquad {};
+            class squads {};
         };
 
         class Loadouts {
                 file = "functions\templates\loadouts";
+                class ammoBearer {};
+                class antiTank {};
+                class atAssistant {};
+                class autoRifleman {};
                 class companyCommander {};
                 class companyXO {};
-                class supplyOfficer {};
+                class gunnerMk6Bipod {};
+                class gunnerMk6Weapon {};
+                class gunnerMk30 {};
+                class gunnerTripod {};
                 class intelOfficer {};
-                class platoonLeader {};
-                class platoonRTO {};
-                class platoonMedic {};
-                class platoonRepairSpc {};
+                class marksman {};
+                class medic {};
                 class platoonEngineer {};
+                class platoonRepairSpc {};
+                class rifleman {};
+                class RTO {};
+                class squadLeader {};
+                class supplyOfficer {};
+                class teamLeader {};
         }
 
         // class FireSupport 
