@@ -11,4 +11,5 @@ if(_isEnabled == 1 && _isSupplyEnabled == 1) then {
         player removeAction DPC_OpenDialogAction;
     };
     DPC_OpenDialogAction = player addAction ["Open Company Command", {[] call DPC_fnc_openCompanyDialog}];
+    [company_gear] call DPC_fnc_addCompanyGear;
 };

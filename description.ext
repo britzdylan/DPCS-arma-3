@@ -47,7 +47,7 @@ class CfgFunctions
         {
             file = "functions\supply";
             class turretsSupply {};
-            class addPlatoonGear {};
+            class addCompanyGear {};
             class requestVehicle {};
             class onVehicleSelect {};
             class openVehicleSupplyDialog {};
