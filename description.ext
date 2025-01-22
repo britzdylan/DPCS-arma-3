@@ -55,7 +55,6 @@ class CfgFunctions
             class openCompanyDialog {};
             class onSquadSelect {};
             class takeCommand {};
-            class initCompanyData {};
             class setupBluLoadouts {
                 postInit = 1;
             };
@@ -84,10 +83,10 @@ class CfgFunctions
         class Templates
         {
             file = "functions\templates";
-            class companyHQ {};
-            class platoonHQ {};
-            class setupInfantrySquad {};
-            class squads {};
+            class loadoutCompanyHQ {};
+            class loadoutPlatoonHQ {};
+            class loadoutInfantrySquad {};
+            class loadoutSquads {};
         };
 
         class Loadouts {
