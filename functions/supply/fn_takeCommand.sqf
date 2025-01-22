@@ -25,7 +25,7 @@ if (_leader == player) exitWith {
 };
 
 // Store original player before switching
-DPC_originalPlayer = player;
+DPC_originalPlayer = company_commander;
 
 // Switch to squad leader
 selectPlayer _leader;

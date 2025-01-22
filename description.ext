@@ -55,7 +55,7 @@ class CfgFunctions
             class openCompanyDialog {};
             class onSquadSelect {};
             class takeCommand {};
-            class setupBluLoadouts {
+            class setupLoadouts {
                 postInit = 1;
             };
             class initUnitSupply {
