@@ -56,6 +56,9 @@ class CfgFunctions
             class onSquadSelect {};
             class takeCommand {};
             class initCompanyData {};
+            class setupBluLoadouts {
+                postInit = 1;
+            };
             class initUnitSupply {
                 postInit = 1;
             };
@@ -77,6 +80,26 @@ class CfgFunctions
                 postInit = 1;
             };
         };
+
+        class Templates
+        {
+            file = "functions\templates";
+            class companyHQ {};
+            class platoonHQ {};
+        };
+
+        class Loadouts {
+                file = "functions\templates\loadouts";
+                class companyCommander {};
+                class companyXO {};
+                class supplyOfficer {};
+                class intelOfficer {};
+                class platoonLeader {};
+                class platoonRTO {};
+                class platoonMedic {};
+                class platoonRepairSpc {};
+                class platoonEngineer {};
+        }
 
         // class FireSupport 
         // {
