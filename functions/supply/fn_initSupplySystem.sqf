@@ -35,14 +35,15 @@ if(_isEnabled == 1 && _isSupplyEnabled == 1) then {
         player removeAction DPC_OpenCompanyDialogAction;
     };
 
-    DPC_OpenCompanyDialogAction = player addAction ["Open Company Command", {[] call DPC_fnc_openCompanyDialog}];
+    DPC_OpenCompanyDialogAction = player addAction ["Open Company Command", {[] call DPC_fnc_openCompanySupplyDialog}];
 
     [company_gear] call DPC_fnc_addCompanyGear; // Add company gear to crate
     [turret_supply] call DPC_fnc_turretsSupply; // Add turrets to crate
+    [] call DPC_fnc_setupLoadouts; // Setup loadouts
 };
 
-if(_isDebug == 1) then {
-    systemChat "Vehicle Supply system initialized";
+if(_isEnabled == 1 && _isDebug == 1  && _isSupplyEnabled == 1) then {
+    systemChat "Supply system initialized";
 
     player addAction [
         "Debug: Request Vehicle",

@@ -52,8 +52,8 @@ class CfgFunctions
 
         class SupplyCompany {
             file = "functions\supply\company";
-            class loadoutCompanyHQ {};
             class loadoutPlatoonHQ {};
+            class loadoutCompanyHQ {};
             class loadoutSquads {};
             class loadoutInfantrySquad {};
             class setupLoadouts {};
@@ -99,17 +99,8 @@ class CfgFunctions
             };
         };
 
-        class Templates
-        {
-            file = "functions\templates";
-            class loadoutCompanyHQ {};
-            class loadoutPlatoonHQ {};
-            class loadoutInfantrySquad {};
-            class loadoutSquads {};
-        };
-
         class Loadouts {
-                file = "functions\templates\loadouts";
+                file = "functions\loadouts";
                 class ammoBearer {};
                 class antiTank {};
                 class atAssistant {};

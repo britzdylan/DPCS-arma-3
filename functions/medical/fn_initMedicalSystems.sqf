@@ -36,7 +36,7 @@ if(_isEnabled == 1 && _isMedicalEnabled == 1) then {
     [] call DPC_fnc_startSurgeryAmbientAnim;
 };
 
-if(_isDebug == 1) then {
+if(_isEnabled == 1 && _isDebug == 1 && _isMedicalEnabled == 1) then {
     systemChat "Medical system initialized";
 
     player addAction [
