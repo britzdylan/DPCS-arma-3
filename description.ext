@@ -1,6 +1,6 @@
 #include "\a3\ui_f\hpp\defineCommonGrids.inc"
 #include "\a3\ui_f\hpp\defineCommonColors.inc"
-#include "ui\dialogs\artillery_dialog.hpp"
+// #include "ui\dialogs\artillery_dialog.hpp"
 #include "ui\dialogs\vehicle_supply_dialog.hpp"
 #include "ui\dialogs\squad_dialog.hpp"
 
@@ -25,30 +25,52 @@ class CfgFunctions
     {
         tag = "DPC";
         
-        class Medical
-        {
-            file = "functions\medical";
-            class addDeathHandler {};
-            class addLoadAction {};
-            class addLoadBodyAction {};
-            class addReviveAction {};
-            class addUnitTraumaStatus {};
-            class addUnloadBodyAction {};
-            class checkUnitTraumaStatus {};
-            class handleUnitDeath {};
-            class initMedicalSystems {
-                postInit = 1;
-            };
-            class loadCasualtyAction {};
-            class startSurgeryAmbientAnim {};
-        };
+        // class Medical
+        // {
+        //     file = "functions\medical";
+        //     class addDeathHandler {};
+        //     class addLoadAction {};
+        //     class addLoadBodyAction {};
+        //     class addReviveAction {};
+        //     class addUnitTraumaStatus {};
+        //     class addUnloadBodyAction {};
+        //     class checkUnitTraumaStatus {};
+        //     class handleUnitDeath {};
+        //     class initMedicalSystems {
+        //         postInit = 1;
+        //     };
+        //     class loadCasualtyAction {};
+        //     class startSurgeryAmbientAnim {};
+        // };
 
-    
+          class Loadouts {
+                file = "functions\loadouts";
+                class ammoBearer {};
+                class antiTank {};
+                class atAssistant {};
+                class autoRifleman {};
+                class companyCommander {};
+                class companyXO {};
+                class gunnerMk6Bipod {};
+                class gunnerMk6Weapon {};
+                class gunnerMk30 {};
+                class gunnerTripod {};
+                class intelOfficer {};
+                class marksman {};
+                class medic {};
+                class platoonEngineer {};
+                class platoonRepairSpc {};
+                class rifleman {};
+                class RTO {};
+                class squadLeader {};
+                class supplyOfficer {};
+                class teamLeader {};
+        };
 
         class SupplyGear {
             file = "functions\supply\gear";
             class addCompanyGear {};
-        }
+        };
 
         class SupplyCompany {
             file = "functions\supply\company";
@@ -57,7 +79,7 @@ class CfgFunctions
             class loadoutSquads {};
             class loadoutInfantrySquad {};
             class setupLoadouts {};
-        }
+        };
         
         class SupplyBase 
         {
@@ -75,6 +97,7 @@ class CfgFunctions
             class onSquadSelect {};
             class requestVehicle {};
             class takeCommand {};
+            class resupplySquad {};
         };
 
         class Supply
@@ -99,29 +122,7 @@ class CfgFunctions
             };
         };
 
-        class Loadouts {
-                file = "functions\loadouts";
-                class ammoBearer {};
-                class antiTank {};
-                class atAssistant {};
-                class autoRifleman {};
-                class companyCommander {};
-                class companyXO {};
-                class gunnerMk6Bipod {};
-                class gunnerMk6Weapon {};
-                class gunnerMk30 {};
-                class gunnerTripod {};
-                class intelOfficer {};
-                class marksman {};
-                class medic {};
-                class platoonEngineer {};
-                class platoonRepairSpc {};
-                class rifleman {};
-                class RTO {};
-                class squadLeader {};
-                class supplyOfficer {};
-                class teamLeader {};
-        }
+      
 
         // class FireSupport 
         // {

@@ -82,6 +82,7 @@ class DPC_Company_Dialog {
             w = 0.11 * safezoneW;
             h = 0.04 * safezoneH;
             colorBackground[] = {0.4,0,0,1};
+            onButtonClick = "[] spawn DPC_fnc_resupplySquad";
         };
         
         class CloseButton: RscButton {
