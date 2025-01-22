@@ -25,8 +25,10 @@ if (!isNull _group) then {
             case (damage _unit > 0.3): {[1, 0.5, 0, 1]}; // Orange for wounded
             default {[0, 1, 0, 1]}; // Green for OK
         };
+
+        private _role = getText(configFile >> "CfgVehicles" >> typeOf _unit >> "displayName");
         
-        private _index = _unitList lbAdd format ["%1 %2", name _unit, _status];
+        private _index = _unitList lbAdd format ["%1 %2 - %3", name _unit, _status, _role];
         _unitList lbSetColor [_index, _color];
     } forEach units _group;
 };
