@@ -79,6 +79,7 @@ class CfgFunctions
             class loadoutSquads {};
             class loadoutInfantrySquad {};
             class setupLoadouts {};
+            class refitUnits {};
         };
         
         class SupplyBase 
@@ -98,6 +99,8 @@ class CfgFunctions
             class requestVehicle {};
             class takeCommand {};
             class resupplySquad {};
+            class refitSelectedSquad {};
+            class updateSquadList {};
         };
 
         class Supply

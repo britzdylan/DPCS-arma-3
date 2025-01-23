@@ -14,7 +14,7 @@ if (isNull _group) exitWith {
 private _id = groupId _group;
 systemChat format["Selected squad: %1", _id];
 private _isPlatoonHQ = _id in DPCS_SYSSUPPLY_PLATOON_CALLSIGNS;
-private _isInfantrySquad = _id in DPCS_SYSSUPPLY_INFANTRY_CALLSIGNS;
+private _isInfantrySquad = _id in DPCS_SYSSUPPLY_ALL_INFANTRY_CALLSIGNS;
 private _groupPos = getPos leader _group;
 private _marker = getMarkerPos "base";
 // squad has to be withing 150m of FOB: base

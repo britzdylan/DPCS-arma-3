@@ -40,7 +40,7 @@ class DPC_Company_Dialog {
             y = 0.31 * safezoneH + safezoneY;
             w = 0.15 * safezoneW;
             h = 0.35 * safezoneH;
-             onLBSelChanged = "params ['_ctrl', '_sel']; [_ctrl, _sel] spawn DPC_fnc_onSquadSelect";
+            onLBSelChanged = "params ['_ctrl', '_sel']; [_ctrl, _sel] spawn DPC_fnc_onSquadSelect";
         };
         
         // Right Panel - Unit List
@@ -64,16 +64,6 @@ class DPC_Company_Dialog {
             onButtonClick = "[] spawn DPC_fnc_takeCommand";
         };
 
-        class RefitBtn: RscButton {
-            idc = 9304;
-            text = "REFIT SQUAD";
-            x = 0.47 * safezoneW + safezoneX;
-            y = 0.67 * safezoneH + safezoneY;
-            w = 0.11 * safezoneW;
-            h = 0.04 * safezoneH;
-            colorBackground[] = {0.4,0,0,1};
-        };
-
         class ResupplyBtn: RscButton {
             idc = 9305;
             text = "RESUPPLY";
@@ -83,6 +73,17 @@ class DPC_Company_Dialog {
             h = 0.04 * safezoneH;
             colorBackground[] = {0.4,0,0,1};
             onButtonClick = "[] spawn DPC_fnc_resupplySquad";
+        };
+
+        class RefitBtn: RscButton {
+            idc = 9305;
+            text = "REFIT";
+            x = 0.47 * safezoneW + safezoneX;
+            y = 0.67 * safezoneH + safezoneY;
+            w = 0.11 * safezoneW;
+            h = 0.04 * safezoneH;
+            colorBackground[] = {0.4,0,0,1};
+            onButtonClick = "[] spawn DPC_fnc_refitSelectedSquad";
         };
         
         class CloseButton: RscButton {

@@ -16,9 +16,6 @@
             case "B_medic_F": {
                 [_unit] spawn DPC_fnc_medic;
             };
-            case "B_soldier_repair_F" : {
-                [_unit] spawn DPC_fnc_platoonRepairSpc;
-            };
             case "B_engineer_F" : {
                 [_unit] spawn DPC_fnc_platoonEngineer;
             };

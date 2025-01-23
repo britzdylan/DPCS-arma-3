@@ -9,15 +9,36 @@ if(_isEnabled == 1 && _isSupplyEnabled == 1) then {
     DPCS_SYSUPPLY_QUAD_POOL = 12;
     DPCS_SYSUPPLY_IN_PROGRESS = false;
     DPCS_SYSSUPPLY_SQUADS = [
-        gulf, squad_1, squad_1_1, squad_1_2, squad_1_3, squad_2, squad_2_1, squad_2_2, squad_2_3, squad_3, squad_3_1, squad_3_2, squad_3_3, squad_4, squad_4_1, squad_4_2, squad_4_3, squad_4_4, squad_4_5, squad_4_6
+        [gulf, 4], 
+        [squad_1, 4], 
+        [squad_1_1, 8], 
+        [squad_1_2, 8], 
+        [squad_1_3, 8], 
+        [squad_2, 4], 
+        [squad_2_1, 8], 
+        [squad_2_2, 8], 
+        [squad_2_3, 8], 
+        [squad_3, 4], 
+        [squad_3_1, 8], 
+        [squad_3_2, 8], 
+        [squad_3_3, 8], 
+        [squad_4, 4], 
+        [squad_4_1, 4], 
+        [squad_4_2, 4], 
+        [squad_4_3, 3], 
+        [squad_4_4, 3], 
+        [squad_4_5, 3], 
+        [squad_4_6, 3]
     ];
-    DPCS_SYSSUPPLY_INFANTRY_CALLSIGNS = [
-        "Alpha 1-1", "Alpha 1-2", "Alpha 1-3", "Bravo 2-1", "Bravo 2-2", "Bravo 2-3", "Charlie 3-1", "Charlie 3-2", "Charlie 3-3", "Delta 4-1", "Delta 4-2", "Delta 4-3", "Delta 4-4", "Delta 4-5", "Delta 4-6"
+    DPCS_SYSSUPPLY_ALL_INFANTRY_CALLSIGNS = [
+       "Delta 4-1", "Delta 4-2", "Delta 4-3", "Delta 4-4", "Delta 4-5", "Delta 4-6"
     ];
     DPCS_SYSSUPPLY_PLATOON_CALLSIGNS = [
         "Alpha Main", "Bravo Main", "Charlie Main", "Delta Main"
     ];
-    
+    DPCS_SYSSUPPLY_INF_CALLSIGNS = [ "Alpha 1-1", "Alpha 1-2", "Alpha 1-3", "Bravo 2-1", "Bravo 2-2", "Bravo 2-3", "Charlie 3-1", "Charlie 3-2", "Charlie 3-3"];
+    DPCS_SYSSUPPLY_AT_CALLSIGNS = ["Delta 4-1", "Delta 4-2"];
+    DPCS_SYSSUPPLY_GUNNER_CALLSIGNS = [ "Delta 4-3", "Delta 4-4", "Delta 4-5", "Delta 4-6"];
     { 
         publicVariable _x 
     } forEach [
@@ -27,7 +48,8 @@ if(_isEnabled == 1 && _isSupplyEnabled == 1) then {
         "DPCS_SYSUPPLY_QUAD_POOL",
         "DPCS_SYSSUPPLY_SQUADS",
         "DPCS_SYSSUPPLY_INFANTRY_CALLSIGNS",
-        "DPCS_SYSSUPPLY_PLATOON_CALLSIGNS"
+        "DPCS_SYSSUPPLY_PLATOON_CALLSIGNS",
+        "DPCS_SYSSUPPLY_SUPPORTINF_CALLSIGNS"
     ];
 
     if (!isNil "DPC_OpenVehicleSupplyDialogAction") then {

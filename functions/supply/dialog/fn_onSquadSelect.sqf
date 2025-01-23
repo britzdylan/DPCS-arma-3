@@ -16,14 +16,14 @@ if (!isNull _group) then {
             case (!alive _unit): {"[KIA]"};
             case (damage _unit > 0.7): {"[CRITICAL]"};
             case (damage _unit > 0.3): {"[WOUNDED]"};
-            default {"[OK]"};
+            default {""};
         };
         
         private _color = switch (true) do {
             case (!alive _unit): {[0.5, 0.5, 0.5, 1]}; // Gray for dead
             case (damage _unit > 0.7): {[1, 0, 0, 1]}; // Red for critical
             case (damage _unit > 0.3): {[1, 0.5, 0, 1]}; // Orange for wounded
-            default {[0, 1, 0, 1]}; // Green for OK
+            default {[1, 1, 1, 1]}; // White for healthy
         };
 
         private _role = getText(configFile >> "CfgVehicles" >> typeOf _unit >> "displayName");
